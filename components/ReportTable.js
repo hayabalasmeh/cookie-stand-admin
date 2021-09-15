@@ -1,4 +1,11 @@
+import { useState } from "react"
+
 export default function ReportTable(props){
+
+    // const [hourly_sales,setSum] = useState([])
+
+   console.log(props.sum);
+    
     
     return (
         
@@ -17,15 +24,33 @@ export default function ReportTable(props){
                 {props.cookiesInformations.map(cookiesInformation => (
                   <tr key={`${cookiesInformation.id}`}>
                     <td className="p-3 pl-2 border bg-green-500">{cookiesInformation.location}</td>
+                   
                     {cookiesInformation.hourly_sales.map(hour => (
                          <td className="p-3 pl-2 border bg-green-500">{hour}</td>
                 ))
                     }
-                    
-                        
+                     
                     <td className="p-3 pl-2 border bg-green-500">517</td>
                   </tr>))
                 }
+                <tr>
+                <td className="p-3 pl-2 border bg-green-500"> Total </td>
+                { props.sum.map( hour_sale=>(
+                 
+                    
+                    
+                    <td className="p-3 pl-2 border bg-green-500">{hour_sale}</td>
+                     
+                       
+                     
+                     
+                ))
+                
+}
+<td className="p-3 pl-2 border bg-green-500">{517*props.cookiesInformations.length}</td>
+                </tr> 
+
+                      
               </tbody>
             </table> 
   

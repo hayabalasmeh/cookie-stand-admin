@@ -1,12 +1,41 @@
 import Head from 'next/head'
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import CreateForm from './CreateForm'
 import ReportTable from './ReportTable'
+import { list } from 'postcss'
 export default function CookieStandAdmin() {
 
   const [cookiesInformations,setCookIesinfo] = useState([])
+  const [sumTotal,setSumTotal] = useState([])
+
+  function sumEachHour(){
+    const hour_list = []
+    let sum = 0
+    for(let y=0; y < 14;y++){
+        sum = 0
+        for(let i =0; i <cookiesInformations.length; i++){
+            sum = sum + cookiesInformations[i].hourly_sales[y]
+        }
+
+        hour_list.push(sum)
+    // cookiesInformations.forEach((cookiesinformation,i)=>{
+    //     sum = 0
+    //     cookiesInformation.hourly_sales.reduce(one_hour=>{
+            
+    //     })
+
+    
+    
+  console.log(hour_list);
+}
+    setSumTotal( hour_list)
+  }
+  useEffect(()=>{
+   sumEachHour()
+
+  },[cookiesInformations])
 
   function cookieInfoHandler(formInfo) {
     
@@ -20,8 +49,13 @@ export default function CookieStandAdmin() {
 
     setCookIesinfo(info => [...info, cookiesInfo])
 
+  
+
+   
 
   }
+
+
   const hours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm']
   
   function getLatestReply() {
@@ -47,7 +81,7 @@ export default function CookieStandAdmin() {
       <Header/>
       <CreateForm cookieInfoHandler={cookieInfoHandler}/>
       {cookiesInformations.length ?
-      <ReportTable hours={hours} cookiesInformations= {cookiesInformations}/>:
+      <ReportTable hours={hours} cookiesInformations= {cookiesInformations} sum= {sumTotal}/>:
       <p className="text-center ">No Cookies Stand available</p>
 }
       </main>
