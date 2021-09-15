@@ -21,11 +21,11 @@ export default function ReportTable(props){
                 </tr>
               </thead>
               <tbody>
-                {props.cookiesInformations.map(cookiesInformation => (
-                  <tr key={`${cookiesInformation.id}`}>
-                    <td className="p-3 pl-2 border bg-green-500">{cookiesInformation.location}</td>
-                   
-                    {cookiesInformation.hourly_sales.map(hour => (
+                {props.stands?.map(stand => (
+                  <tr key={`${stand.id}`}>
+                    <td className="p-3 pl-2 border bg-green-500">{stand.location}</td>
+                    <td onClick={() => props.onDelete(stand.id)}>[X]</td>
+                    {stand.hourly_sales.map(hour => (
                          <td className="p-3 pl-2 border bg-green-500">{hour}</td>
                 ))
                     }

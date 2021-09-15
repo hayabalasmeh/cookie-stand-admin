@@ -1,4 +1,4 @@
-export default function CreateForm({cookieInfoHandler}){
+export default function CreateForm({onCreate}){
 
     function formHandler(event){
         event.preventDefault();
@@ -6,7 +6,9 @@ export default function CreateForm({cookieInfoHandler}){
         location:event.target.location.value,
         hourly_sales: [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36]
         }
-        cookieInfoHandler(formInfo)
+        // cookieInfoHandler(formInfo)
+        onCreate(formInfo);
+        event.target.reset()
     }
 
     return (
