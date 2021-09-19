@@ -7,3 +7,7 @@
  ## PR:
  [pr](https://github.com/hayabalasmeh/cookie-stand-admin/pull/1)
 
+ ## Deployment URL:
+
+ [live url](https://cookie-stand-admin-rose-eight.vercel.app/)
+
