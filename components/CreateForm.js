@@ -4,9 +4,14 @@ export default function CreateForm({cookieInfoHandler}){
         event.preventDefault();
         const formInfo = {
         location:event.target.location.value,
-        hourly_sales: [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36]
+        hourly_sales: [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36],
+        
+        description:event.target.description.value
         }
         cookieInfoHandler(formInfo)
+        // onCreate(formInfo);
+        // cookieInfoHandler()
+        event.target.reset()
     }
 
     return (
@@ -15,6 +20,10 @@ export default function CreateForm({cookieInfoHandler}){
         <div className="flex items-stretch">
         <label className=" m-3"for="location">Location</label>
         <input name="location"className= "bg-gray-100 m-3 w-2/3" />
+        </div>
+        <div className="flex items-stretch">
+        <label className=" m-3"for="description">description</label>
+        <input name="description"className= "bg-gray-100 m-3 w-2/3" />
         </div>
         <div className="flex items-stretch">
         <div className="m-3 p-4 bg-green-200">

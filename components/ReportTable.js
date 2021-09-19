@@ -21,16 +21,19 @@ export default function ReportTable(props){
                 </tr>
               </thead>
               <tbody>
-                {props.cookiesInformations.map(cookiesInformation => (
-                  <tr key={`${cookiesInformation.id}`}>
-                    <td className="p-3 pl-2 border bg-green-500">{cookiesInformation.location}</td>
+                {
+                props.stands?.map(stand => (
+                  
+                  <tr key={`${stand.id}`}>
+                    <td className="p-3 pl-2 border bg-green-500">{stand.location}</td>
                    
-                    {cookiesInformation.hourly_sales.map(hour => (
+                    {stand.hourly_sales.map(hour => (
                          <td className="p-3 pl-2 border bg-green-500">{hour}</td>
                 ))
                     }
                      
                     <td className="p-3 pl-2 border bg-green-500">517</td>
+                    <td onClick={() => props.onDelete(stand.id)}>[X]</td>
                   </tr>))
                 }
                 <tr>
@@ -47,7 +50,7 @@ export default function ReportTable(props){
                 ))
                 
 }
-<td className="p-3 pl-2 border bg-green-500">{517*props.cookiesInformations.length}</td>
+<td className="p-3 pl-2 border bg-green-500">{517}</td>
                 </tr> 
 
                       

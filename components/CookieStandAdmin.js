@@ -4,9 +4,15 @@ import Header from './Header'
 import Footer from './Footer'
 import CreateForm from './CreateForm'
 import ReportTable from './ReportTable'
-import { list } from 'postcss'
-export default function CookieStandAdmin() {
+// import { list } from 'postcss'
+import { useAuth } from '../contexts/auth'
 
+
+export default function CookieStandAdmin({ stands, loading, onDelete,createResource }) {
+    if (loading) return <p>Loading...</p>
+
+  const { user, login, logout } = useAuth();
+  
   const [cookiesInformations,setCookIesinfo] = useState([])
   const [sumTotal,setSumTotal] = useState([])
 
@@ -20,11 +26,7 @@ export default function CookieStandAdmin() {
         }
 
         hour_list.push(sum)
-    // cookiesInformations.forEach((cookiesinformation,i)=>{
-    //     sum = 0
-    //     cookiesInformation.hourly_sales.reduce(one_hour=>{
-            
-    //     })
+
 
     
     
@@ -43,11 +45,15 @@ export default function CookieStandAdmin() {
    
     const cookiesInfo = {
       location: formInfo.location,
-      hourly_sales: formInfo.hourly_sales
+     
+      hourly_sales: formInfo.hourly_sales,
+      description: formInfo.description
+
       
     }
 
     setCookIesinfo(info => [...info, cookiesInfo])
+    createResource(cookiesInfo)
 
   
 
@@ -58,17 +64,7 @@ export default function CookieStandAdmin() {
 
   const hours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm']
   
-  function getLatestReply() {
-    if(cookiesInformations.length>=1){
-      // console.log(cookiesInformations[cookiesInformations.length-1]);
-      return    cookiesInformations[cookiesInformations.length-1]
 
-      
-    
-    } else{
-      return "No entries"
-    }
-  }
 
   return (
     <div >
@@ -79,9 +75,9 @@ export default function CookieStandAdmin() {
 
       <main >
       <Header/>
-      <CreateForm cookieInfoHandler={cookieInfoHandler}/>
-      {cookiesInformations.length ?
-      <ReportTable hours={hours} cookiesInformations= {cookiesInformations} sum= {sumTotal}/>:
+      <CreateForm cookieInfoHandler={cookieInfoHandler} />
+      {stands?
+      <ReportTable hours={hours}  sum= {sumTotal} stands={stands} onDelete={onDelete}/>:
       <p className="text-center ">No Cookies Stand available</p>
 }
       </main>
