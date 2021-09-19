@@ -1,11 +1,17 @@
 import { useAuth } from '../contexts/auth'
 
-export default function LogInForm(){
+export default function LogInForm({login}){
 
-    const { user, login, logout } = useAuth();
+    // const { user, login, logout } = useAuth();
 
     function formHandleing(event){
-        login(event.target.username.value,event.target.pass.value)
+        event.preventDefault();
+        const userInfo = {
+            user:event.target.user.value,
+            password :event.target.password.value
+        }
+        login(userInfo.user,userInfo.password)
+        console.log(userInfo);
     }
 
     return (
@@ -14,12 +20,12 @@ export default function LogInForm(){
         <h2 className ="text-center text-xl">LogIn Form </h2>
         
         <div className="m-3 p-4 bg-green-200">
-        <label className=" m-3"for="customperhour">User Name</label>
-        <input name="username"/>
+        <label className=" m-3"for="user">User Name</label>
+        <input name="user"/>
         </div>
         <div className="m-3 p-4 bg-green-200">
-        <label className=" m-3"for="customperhour">Password</label>
-        <input name="pass" type='password'/>
+        <label className=" m-3"for="password">Password</label>
+        <input name="password" type='password'/>
         </div> 
         <button className="mx-auto px-2 p-1 m-3 bg-green-500 text-black-50" >Sign In</button>
         </form>

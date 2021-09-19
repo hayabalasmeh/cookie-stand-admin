@@ -16,7 +16,7 @@ export default function Home() {
   return (
   <>
    {user ?
-    <CookieStandAdmin stand = {resources} loading = {loading} onDelete={deleteResource} createResource={createResource}/>
+    <CookieStandAdmin stands = {resources} loading = {loading} onDelete={deleteResource} createResource={createResource}/>
    : <LogInForm login = {login} />
   
     

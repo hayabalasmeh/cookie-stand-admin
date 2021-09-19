@@ -1,7 +1,7 @@
 import axios from 'axios'
 import useSWR from 'swr'
 
-export const apiUrl ='https://cookie-foods-api.herokuapp.com';
+export const apiUrl ='https://cookie-foods-api.herokuapp.com/api/v1/foods/';
 import { useAuth } from '../contexts/auth'
 
 export default function useResource() {
@@ -50,6 +50,7 @@ export default function useResource() {
     async function updateResource(resource) {
         // STRETCH
         // Add ability for user to update an existing resource
+        
     }
 
 
@@ -68,7 +69,7 @@ export default function useResource() {
         // currently just log out on error
         // but a common error will be short lived token expiring
         // STRETCH: refresh the access token when it has expired
-        logout();
+        
     }
 
     return {

@@ -8,7 +8,7 @@ import ReportTable from './ReportTable'
 import { useAuth } from '../contexts/auth'
 
 
-export default function CookieStandAdmin({ stands, loading, onDelete }) {
+export default function CookieStandAdmin({ stands, loading, onDelete,createResource }) {
     if (loading) return <p>Loading...</p>
 
   const { user, login, logout } = useAuth();
@@ -26,11 +26,7 @@ export default function CookieStandAdmin({ stands, loading, onDelete }) {
         }
 
         hour_list.push(sum)
-    // cookiesInformations.forEach((cookiesinformation,i)=>{
-    //     sum = 0
-    //     cookiesInformation.hourly_sales.reduce(one_hour=>{
-            
-    //     })
+
 
     
     
@@ -49,11 +45,15 @@ export default function CookieStandAdmin({ stands, loading, onDelete }) {
    
     const cookiesInfo = {
       location: formInfo.location,
-      hourly_sales: formInfo.hourly_sales
+     
+      hourly_sales: formInfo.hourly_sales,
+      description: formInfo.description
+
       
     }
 
     setCookIesinfo(info => [...info, cookiesInfo])
+    createResource(cookiesInfo)
 
   
 
@@ -75,9 +75,9 @@ export default function CookieStandAdmin({ stands, loading, onDelete }) {
 
       <main >
       <Header/>
-      <CreateForm cookieInfoHandler={cookieInfoHandler} onCreate={props.createResource}/>
-      {cookiesInformations.length ?
-      <ReportTable hours={hours} cookiesInformations= {cookiesInformations} sum= {sumTotal} stands={stands} onDelete={deleteResource}/>:
+      <CreateForm cookieInfoHandler={cookieInfoHandler} />
+      {stands?
+      <ReportTable hours={hours}  sum= {sumTotal} stands={stands} onDelete={onDelete}/>:
       <p className="text-center ">No Cookies Stand available</p>
 }
       </main>
